@@ -66,11 +66,21 @@ Recently refactored to a more efficient, flat hierarchy:
 
 ---
 
-## 🧪 Testing with Sample Data
-To quickly see the app in action:
+## 🧪 Testing and Data Flow
+To verify the app's functionality and its integration with Firebase:
+
+### 1. Manual Data Entry (End-to-End Test)
+You can test the full lifecycle of the app by:
+1. **Creating an account** via the Sign-Up screen.
+2. **Adding a Pet** with a name, breed, and photo.
+3. **Logging Health Records** (Vaccinations, Vet Visits) and **Reminders**.
+4. Verifying that all data is instantly synced to **Firestore** and reflected in real-time across the Home, Health Tracker, and Reminders screens.
+
+### 2. Quick-Populate Test Data
+If you'd like to see how the app handles multiple entries instantly:
 1. Go to the **Settings** screen.
 2. Tap **"Populate Test Data"**.
-3. This will instantly create a test pet with pre-filled health records and reminders for your account.
+3. This will programmatically create a sample pet with pre-filled health records and reminders, demonstrating the app's data grouping and real-time observer logic.
 
 ---
 
@@ -80,6 +90,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 ## 👨‍💻 Author
-**Nawwaf** - [Turkishangoras](https://github.com/Turkishangoras)
+**Ali Nawwaf Fathuhy** - [Turkishangoras](https://github.com/Turkishangoras)
 
 *Made with ❤️ for pet lovers.*
