@@ -53,7 +53,7 @@ Recently refactored to a more efficient, flat hierarchy:
 ### Setup
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/PetSync.git
+   git clone https://github.com/Turkishangoras/PetSync.git
    ```
 2. **Add Firebase:**
    - Create a project in the [Firebase Console](https://console.firebase.google.com/).
