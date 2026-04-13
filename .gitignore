@@ -1,0 +1,33 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Firebase / Google Services (SENSITIVE)
+google-services.json
+app/google-services.json
+
+# Signing files
+*.jks
+*.keystore
+*.p12
+google-services.json
+
+# Gradle Credentials
+gradle.properties
+!gradle-wrapper.properties
+
+# Secrets
+secrets.xml
+/app/src/main/res/values/secrets.xml
