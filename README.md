@@ -29,6 +29,20 @@
 
 ---
 
+## 📸 Screenshots & Demo
+
+<p align="center">
+  <img src="screenshots/profile.png" width="30%" />
+  <img src="screenshots/healthrecords.png" width="30%" />
+  <img src="screenshots/reminders.png" width="30%" />
+</p>
+
+<p align="center">
+  <img src="screenshots/settings.png" width="30%" />
+</p>
+
+---
+
 ## 🏗️ Architecture & Data Structure
 
 The app follows a clean MVVM architecture to ensure scalability and maintainability. 
