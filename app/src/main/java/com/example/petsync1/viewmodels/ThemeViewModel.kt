@@ -15,11 +15,18 @@ import kotlinx.coroutines.launch
 
 private val Context.dataStore by preferencesDataStore(name = "settings")
 
+/**
+ * ViewModel responsible for managing and persisting the application's theme settings (Dark/Light mode).
+ * Uses DataStore Preferences for lightweight local storage of user preferences.
+ */
 class ThemeViewModel(application: Application) : AndroidViewModel(application) {
     private val dataStore = application.dataStore
     private val darkModeKey = booleanPreferencesKey("dark_mode")
 
-    // Provide a default based on system or previous setting
+    /**
+     * StateFlow providing the current dark mode status.
+     * Maps the DataStore value and defaults to 'false' (Light Mode) if not set.
+     */
     val isDarkMode: StateFlow<Boolean> = dataStore.data
         .map { preferences ->
             preferences[darkModeKey] ?: false
@@ -29,6 +36,10 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application) {
             initialValue = false
         )
 
+    /**
+     * Persists the user's dark mode preference to DataStore.
+     * @param enabled True for Dark Mode, False for Light Mode.
+     */
     fun toggleDarkMode(enabled: Boolean) {
         viewModelScope.launch {
             dataStore.edit { preferences ->

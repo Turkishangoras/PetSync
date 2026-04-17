@@ -12,12 +12,16 @@ val BackgroundColor = Color(0xFFFFFFFF) // White background
 val TextColor = Color.Black // Default text color
 val ErrorColor = Color.Red
 
+/**
+ * Light color scheme configuration for the PetSync application.
+ * Focuses on a fresh green-tone aesthetic.
+ */
 private val LightColorScheme = lightColorScheme(
     primary = PrimaryColor,
     secondary = SecondaryColor,
-    primaryContainer = Color(0xFFD7F5EE), // Very light green for containers
+    primaryContainer = Color(0xFFD7F5EE), // Very light green for headers
     onPrimaryContainer = Color(0xFF00382D),
-    secondaryContainer = Color(0xFFC8E6C9), // More visible light green for the "Green Box"
+    secondaryContainer = Color(0xFFC8E6C9), // Light green for dashboard cards
     onSecondaryContainer = Color(0xFF003300),
     background = BackgroundColor,
     surface = BackgroundColor,
@@ -31,12 +35,16 @@ private val LightColorScheme = lightColorScheme(
     onError = Color.White
 )
 
+/**
+ * Dark color scheme configuration for the PetSync application.
+ * Optimizes the green theme for low-light visibility and battery saving.
+ */
 private val DarkColorScheme = darkColorScheme(
     primary = Color(0xFF81C784),
     secondary = Color(0xFF4CAF50),
-    primaryContainer = Color(0xFF005142), // Dark green for containers
+    primaryContainer = Color(0xFF005142),
     onPrimaryContainer = Color(0xFFD7F5EE),
-    secondaryContainer = Color(0xFF2E7D32), // Darker green for dark mode dashboard
+    secondaryContainer = Color(0xFF2E7D32),
     onSecondaryContainer = Color(0xFFE8F5E9),
     background = Color(0xFF121212),
     surface = Color(0xFF1E1E1E),
@@ -50,6 +58,11 @@ private val DarkColorScheme = darkColorScheme(
     onError = Color.Black
 )
 
+/**
+ * Custom Material 3 theme wrapper for the PetSync application.
+ * @param darkTheme Whether to apply the dark color scheme.
+ * @param content The composable content to be themed.
+ */
 @Composable
 fun PetSync1Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),

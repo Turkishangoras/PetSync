@@ -87,20 +87,20 @@ fun PetProfileScreen(navController: NavHostController, petViewModel: PetViewMode
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp)
+                    .padding(horizontal = 16.dp)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(59.dp)) // Increased to match HealthTrackerScreen
 
                 Text(
                     text = "Pet Profile",
-                    fontSize = 32.sp,
+                    fontSize = 40.sp, // Increased to match HealthTrackerScreen title size
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
                 )
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(20.dp)) // Matched spacing to HealthTrackerScreen
 
                 Box {
                     Button(
