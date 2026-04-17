@@ -275,7 +275,7 @@ fun SignUpScreen(navController: NavHostController) {
                                                 user?.sendEmailVerification()
                                                     ?.addOnCompleteListener { emailTask ->
                                                         if (emailTask.isSuccessful) {
-                                                            // Success: Navigate to login
+                                                            // Success: Navigate to log-in
                                                             navController.navigate("login") {
                                                                 popUpTo("signup") { inclusive = true }
                                                             }

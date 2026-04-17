@@ -13,6 +13,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
@@ -35,14 +37,11 @@ import com.example.petsync1.navigation.BottomNavBar
 import com.example.petsync1.viewmodels.Pet
 import com.example.petsync1.viewmodels.PetViewModel
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.launch
 import com.example.petsync1.ui.theme.PetSync1Theme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PetProfileScreen(navController: NavHostController, petViewModel: PetViewModel, isDarkMode: Boolean = false) {
-    val coroutineScope = rememberCoroutineScope()
-
     var pets by remember { mutableStateOf<List<Pet>>(emptyList()) }
     var selectedPet by remember { mutableStateOf<Pet?>(null) }
     var expanded by remember { mutableStateOf(false) }
@@ -52,13 +51,22 @@ fun PetProfileScreen(navController: NavHostController, petViewModel: PetViewMode
     val isPreview = LocalInspectionMode.current
     val ownerId = if (isPreview) "" else FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
+    // Start real-time observation of pets list when screen loads
     LaunchedEffect(ownerId) {
         if (ownerId.isNotEmpty() && !isPreview) {
-            coroutineScope.launch {
-                petViewModel.getAllPetsForUser(ownerId) { petList ->
-                    pets = petList
-                }
-            }
+            petViewModel.startObservingPets(ownerId)
+        }
+    }
+
+    // Collect the observed pets from ViewModel state
+    val observedPets by petViewModel.petList.collectAsState()
+
+    // Update local 'pets' list when the observed state changes
+    LaunchedEffect(observedPets) {
+        pets = observedPets
+        // If we have a selected pet, update its details from the list (for health status sync)
+        if (selectedPet != null) {
+            selectedPet = observedPets.find { it.id == selectedPet!!.id }
         }
     }
 
@@ -196,6 +204,7 @@ fun PetProfileScreen(navController: NavHostController, petViewModel: PetViewMode
                                     "Breed: ${selectedPet!!.breed}",
                                     "Age: ${selectedPet!!.age} years",
                                     "Weight: ${selectedPet!!.weight} kg",
+                                    "Gender: ${selectedPet!!.gender}",
                                 ).forEach { text ->
                                     Surface(
                                         modifier = Modifier.fillMaxWidth(),

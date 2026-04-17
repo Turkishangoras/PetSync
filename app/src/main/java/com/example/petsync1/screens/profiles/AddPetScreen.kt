@@ -47,7 +47,7 @@ fun AddPetScreen(navController: NavHostController, petViewModel: PetViewModel = 
     AddPetContent(
         navController = navController,
         isDarkMode = isDarkMode,
-        onAddPet = { petName, age, breed, weight, healthStatus, petImageUri, onSuccess, onFailure ->
+        onAddPet = { petName, age, breed, weight, gender, healthStatus, petImageUri, onSuccess, onFailure ->
             val user = FirebaseAuth.getInstance().currentUser
             val ownerId = user?.uid ?: ""
 
@@ -61,6 +61,7 @@ fun AddPetScreen(navController: NavHostController, petViewModel: PetViewModel = 
                 age = age,
                 breed = breed,
                 weight = weight,
+                gender = gender,
                 healthStatus = healthStatus,
                 ownerId = ownerId
             )
@@ -80,7 +81,7 @@ fun AddPetScreen(navController: NavHostController, petViewModel: PetViewModel = 
 fun AddPetContent(
     navController: NavHostController,
     isDarkMode: Boolean = false,
-    onAddPet: (String, String, String, String, String, Uri?, () -> Unit, (Exception) -> Unit) -> Unit
+    onAddPet: (String, String, String, String, String, String, Uri?, () -> Unit, (Exception) -> Unit) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -100,6 +101,9 @@ fun AddPetContent(
             var breed by remember { mutableStateOf(TextFieldValue("")) }
             var age by remember { mutableStateOf(TextFieldValue("")) }
             var weight by remember { mutableStateOf(TextFieldValue("")) }
+            var gender by remember { mutableStateOf("Male") }
+            var genderExpanded by remember { mutableStateOf(false) }
+            val genderOptions = listOf("Male", "Female")
             var healthStatus by remember { mutableStateOf("Healthy") }
             var healthStatusExpanded by remember { mutableStateOf(false) }
             val healthStatusOptions = listOf("Healthy", "Needs Attention", "Under Treatment")
@@ -182,6 +186,51 @@ fun AddPetContent(
                                 weight = input
                             }
                         }, "Enter Weight")
+
+                        TextFieldLabel("GENDER")
+                        ExposedDropdownMenuBox(
+                            expanded = genderExpanded,
+                            onExpandedChange = { genderExpanded = !genderExpanded },
+                            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+                        ) {
+                            TextField(
+                                value = gender,
+                                onValueChange = {},
+                                readOnly = true,
+                                modifier = Modifier
+                                    .menuAnchor()
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(24.dp)),
+                                colors = TextFieldDefaults.colors(
+                                    focusedIndicatorColor = Color.Transparent,
+                                    unfocusedIndicatorColor = Color.Transparent,
+                                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    focusedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    unfocusedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+                                ),
+                                trailingIcon = {
+                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = genderExpanded)
+                                }
+                            )
+
+                            ExposedDropdownMenu(
+                                expanded = genderExpanded,
+                                onDismissRequest = { genderExpanded = false },
+                                modifier = Modifier.background(MaterialTheme.colorScheme.surface)
+                            ) {
+                                genderOptions.forEach { option ->
+                                    DropdownMenuItem(
+                                        text = { Text(option) },
+                                        onClick = {
+                                            gender = option
+                                            genderExpanded = false
+                                        },
+                                        contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                                    )
+                                }
+                            }
+                        }
 
                         TextFieldLabel("HEALTH STATUS")
                         ExposedDropdownMenuBox(
@@ -266,6 +315,7 @@ fun AddPetContent(
                                         age.text,
                                         breed.text,
                                         weight.text,
+                                        gender,
                                         healthStatus,
                                         petImageUri,
                                         {
@@ -340,7 +390,7 @@ fun PreviewAddPetScreen() {
         AddPetContent(
             navController = rememberNavController(),
             isDarkMode = false,
-            onAddPet = { _, _, _, _, _, _, _, _ -> })
+            onAddPet = { _, _, _, _, _, _, _, _, _ -> })
     }
 }
 
@@ -351,6 +401,6 @@ fun PreviewAddPetScreenDark() {
         AddPetContent(
             navController = rememberNavController(),
             isDarkMode = true,
-            onAddPet = { _, _, _, _, _, _, _, _ -> })
+            onAddPet = { _, _, _, _, _, _, _, _, _ -> })
     }
 }

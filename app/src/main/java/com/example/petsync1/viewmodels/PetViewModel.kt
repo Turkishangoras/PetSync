@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.StateFlow
  * @property age Age of the pet as a string.
  * @property breed Breed of the pet.
  * @property weight Weight of the pet.
+ * @property gender Gender of the pet (e.g., "Male", "Female").
  * @property healthStatus Current health status (e.g., "Healthy").
  * @property imageUrl URL of the pet's photo stored in Firebase Storage.
  * @property ownerId The UID of the user who owns this pet.
@@ -30,6 +31,7 @@ data class Pet(
     val age: String = "",
     val breed: String = "",
     val weight: String = "",
+    val gender: String = "",
     val healthStatus: String = "",
     val imageUrl: String = "",
     val ownerId: String = ""
