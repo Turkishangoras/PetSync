@@ -42,11 +42,20 @@
 
 ## 📸 Screenshots & Demo
 
-| Pet Profile | Health Records |
-| :---: | :---: |
-| ![Pet Profile Screen](screenshots/profile.png) | ![Health Records Screen](screenshots/healthrecords.png) |
-| **Reminders** | **Settings** |
-| ![Reminders Screen](screenshots/reminders.png) | ![Settings Screen](screenshots/settings.png) |
+<details>
+<summary><b>Click to expand app screenshots</b></summary>
+
+<div style="text-align: center;">
+  <img src="screenshots/profile.png" width="45%" alt="Pet Profile Screen" />
+  <img src="screenshots/healthrecords.png" width="45%" alt="Health Records Screen" />
+</div>
+
+<div style="text-align: center;">
+  <img src="screenshots/reminders.png" width="45%" alt="Reminders Screen" />
+  <img src="screenshots/settings.png" width="45%" alt="Settings Screen" />
+</div>
+
+</details>
 
 ---
 
