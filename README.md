@@ -1,6 +1,7 @@
 # PetSync 🐾
 
-**PetSync** is a modern, comprehensive pet health and lifestyle management application built for Android. It helps pet owners keep track of their furry friends' medical records, vaccinations, medications, and daily routines through an intuitive and beautiful interface.
+## 🚀 Full-Featured Mobile Pet Management Application
+**PetSync** is a modern, comprehensive pet health and lifestyle management application built for Android. It helps pet owners keep track of their furry friends' medical records, vaccinations, medications, and daily routines through an intuitive and beautiful interface. Developed as a final year diploma project and continuously improved beyond coursework.
 
 ---
 
@@ -8,7 +9,7 @@
 
 - **🐕 Pet Profiles:** Create and manage detailed profiles for all your pets, including their breed, age, weight, and health status.
 - **🏥 Health Tracker:** A consolidated health record system to log vaccinations, deworming, vet visits, and more.
-- **⏰ Smart Reminders:** Never miss a pill or a vet appointment. Set one-time or recurring reminders for medications and general tasks.
+- **⏰ Reminder System:** Create and manage reminders for medications, vet visits, and general tasks with clear status tracking (incomplete, completed, overdue).
 - **🔄 Real-time Sync:** Powered by Firebase Firestore, your data stays in sync across devices instantly.
 - **🎨 Modern UI/UX:** Built entirely with Jetpack Compose and Material 3, featuring a clean "Green-tone" theme with full Dark Mode support.
 - **🔒 Secure Auth:** Firebase-powered authentication for secure sign-ups and profile management.
@@ -41,21 +42,17 @@
 
 ## 📸 Screenshots & Demo
 
-<p align="center">
-  <img src="screenshots/profile.png" width="30%" />
-  <img src="screenshots/healthrecords.png" width="30%" />
-  <img src="screenshots/reminders.png" width="30%" />
-</p>
-
-<p align="center">
-  <img src="screenshots/settings.png" width="30%" />
-</p>
+| Pet Profile | Health Records |
+| :---: | :---: |
+| ![Pet Profile Screen](screenshots/profile.png) | ![Health Records Screen](screenshots/healthrecords.png) |
+| **Reminders** | **Settings** |
+| ![Reminders Screen](screenshots/reminders.png) | ![Settings Screen](screenshots/settings.png) |
 
 ---
 
 ## 🏗️ Architecture & Data Structure
 
-The app follows a clean MVVM architecture to ensure scalability and maintainability. 
+The app follows a scalable MVVM architecture with a structured Firestore database design optimized for real-time data handling and efficient querying.
 
 ### Firestore Schema Optimization
 Recently refactored to a more efficient, flat hierarchy:

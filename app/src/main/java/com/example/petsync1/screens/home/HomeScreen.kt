@@ -89,75 +89,85 @@ fun HomeScreen(navController: NavController, isDarkMode: Boolean = false) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(0.dp))
 
                 // --- Dashboard Section (The "Green Box") ---
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp),
+                        .padding(vertical = 4.dp), // Reduced vertical padding to move it up
                     shape = RoundedCornerShape(28.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.95f)
                     ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                    elevation = CardDefaults.cardElevation(defaultElevation = 28.dp)
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(24.dp),
-                        verticalArrangement = Arrangement.spacedBy(32.dp),
+                            .padding(horizontal = 8.dp, vertical = 12.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         // First Row: Profile and Add Pet (Large Icons)
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceEvenly,
-                            verticalAlignment = Alignment.Bottom
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            HomeDashboardIcon(
-                                resId = R.drawable.petprofilelogo,
-                                label = "Profile",
-                                iconSize = 135.dp,
-                                onClick = { navController.navigate("pet_profile") }
-                            )
-                            HomeDashboardIcon(
-                                resId = R.drawable.addpetlogo,
-                                label = "Add Pet",
-                                iconSize = 135.dp,
-                                onClick = { navController.navigate("add_pet") }
-                            )
+                            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                                HomeDashboardIcon(
+                                    resId = R.drawable.petprofilelogo,
+                                    label = "Profile",
+                                    iconSize = 200.dp,
+                                    onClick = { navController.navigate("pet_profile") }
+                                )
+                            }
+                            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                                HomeDashboardIcon(
+                                    resId = R.drawable.addpetlogo,
+                                    label = "Add Pet",
+                                    iconSize = 185.dp,
+                                    onClick = { navController.navigate("add_pet") }
+                                )
+                            }
                         }
 
                         // Second Row: Reminders, Find Vet, Settings (Medium Icons)
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceEvenly,
-                            verticalAlignment = Alignment.Bottom
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            HomeDashboardIcon(
-                                resId = R.drawable.reminderslogo,
-                                label = "Reminders",
-                                iconSize = 85.dp,
-                                onClick = { navController.navigate("reminders") }
-                            )
-                            HomeDashboardIcon(
-                                resId = R.drawable.findvetlogotp,
-                                label = "Find Vet",
-                                iconSize = 85.dp,
-                                onClick = { navController.navigate("find_vet") }
-                            )
-                            HomeDashboardIcon(
-                                resId = R.drawable.settingslogotp,
-                                label = "Settings",
-                                iconSize = 85.dp,
-                                onClick = { navController.navigate("settings") }
-                            )
+                            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                                HomeDashboardIcon(
+                                    resId = R.drawable.reminderslogo,
+                                    label = "Reminders",
+                                    iconSize = 120.dp,
+                                    onClick = { navController.navigate("reminders") }
+                                )
+                            }
+                            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                                HomeDashboardIcon(
+                                    resId = R.drawable.findvetlogotp,
+                                    label = "Find Vet",
+                                    iconSize = 120.dp,
+                                    onClick = { navController.navigate("find_vet") }
+                                )
+                            }
+                            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                                HomeDashboardIcon(
+                                    resId = R.drawable.settingslogotp,
+                                    label = "Settings",
+                                    iconSize = 120.dp,
+                                    onClick = { navController.navigate("settings") }
+                                )
+                            }
                         }
                     }
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(28.dp))
 
                 // --- Wellness Tips Section ---
                 Card(
@@ -203,7 +213,7 @@ fun HomeScreen(navController: NavController, isDarkMode: Boolean = false) {
 }
 
 /**
- * Reusable component for Dashboard Icons with labels.
+ * Reusable component for Dashboard Icons (Image only).
  */
 @Composable
 private fun HomeDashboardIcon(
@@ -212,24 +222,17 @@ private fun HomeDashboardIcon(
     iconSize: androidx.compose.ui.unit.Dp,
     onClick: () -> Unit
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Box(
         modifier = Modifier
             .clickable(onClick = onClick)
-            .padding(4.dp)
+            .padding(0.dp),
+        contentAlignment = Alignment.Center
     ) {
         Image(
             painter = painterResource(id = resId),
             contentDescription = label,
             modifier = Modifier.size(iconSize),
             contentScale = ContentScale.Fit
-        )
-        Spacer(modifier = Modifier.height(6.dp))
-        Text(
-            text = label,
-            fontSize = 15.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSecondaryContainer
         )
     }
 }
