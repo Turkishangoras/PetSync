@@ -27,6 +27,9 @@ import com.example.petsync1.ui.theme.PetSync1Theme
 import com.example.petsync1.utils.TestDataHelper
 import androidx.compose.ui.platform.LocalContext
 
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+
 @Composable
 fun SettingsScreen(
     navController: NavController,
@@ -34,10 +37,30 @@ fun SettingsScreen(
     onDarkModeChange: (Boolean) -> Unit,
     onSignOut: () -> Unit
 ) {
+    val currentUser = FirebaseAuth.getInstance().currentUser
+    var userName by remember { mutableStateOf(currentUser?.displayName ?: "PetSync User") }
+    val userEmail = currentUser?.email ?: "No email linked"
+
+    // If displayName is empty, fetch name from Firestore
+    LaunchedEffect(currentUser?.uid) {
+        currentUser?.uid?.let { uid ->
+            FirebaseFirestore.getInstance().collection("users").document(uid)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        val nameFromDb = document.getString("name")
+                        if (!nameFromDb.isNullOrEmpty()) {
+                            userName = nameFromDb
+                        }
+                    }
+                }
+        }
+    }
+
     SettingsContent(
         navController = navController,
-        userName = "User Name", // Ideally get from ViewModel
-        userEmail = "user@example.com", // Ideally get from ViewModel
+        userName = userName,
+        userEmail = userEmail,
         isDarkMode = isDarkMode,
         onDarkModeChange = onDarkModeChange,
         onSignOut = onSignOut

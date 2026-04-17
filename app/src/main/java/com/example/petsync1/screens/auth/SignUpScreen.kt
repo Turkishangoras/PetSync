@@ -273,10 +273,15 @@ fun SignUpScreen(navController: NavHostController) {
                                             .set(userProfile)
                                             .addOnSuccessListener {
                                                 user?.sendEmailVerification()
-                                                    ?.addOnSuccessListener {
-                                                        errorMessage = "Verification email sent. Please check your email."
-                                                        navController.navigate("login") {
-                                                            popUpTo("signup") { inclusive = true }
+                                                    ?.addOnCompleteListener { emailTask ->
+                                                        if (emailTask.isSuccessful) {
+                                                            // Success: Navigate to login
+                                                            navController.navigate("login") {
+                                                                popUpTo("signup") { inclusive = true }
+                                                            }
+                                                        } else {
+                                                            // Error sending email
+                                                            errorMessage = "Account created, but verification email failed: ${emailTask.exception?.localizedMessage}"
                                                         }
                                                     }
                                             }

@@ -95,18 +95,18 @@ fun HomeScreen(navController: NavController, isDarkMode: Boolean = false) {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 4.dp), // Reduced vertical padding to move it up
+                        .padding(vertical = 4.dp), 
                     shape = RoundedCornerShape(28.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.95f)
                     ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 28.dp)
+                    elevation = CardDefaults.cardElevation(defaultElevation = 30.dp)
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 8.dp, vertical = 12.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                            .padding(horizontal = 8.dp, vertical = 20.dp), // Increased vertical padding
+                        verticalArrangement = Arrangement.spacedBy(36.dp), // Increased row spacing
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         // First Row: Profile and Add Pet (Large Icons)
@@ -117,17 +117,17 @@ fun HomeScreen(navController: NavController, isDarkMode: Boolean = false) {
                         ) {
                             Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                                 HomeDashboardIcon(
-                                    resId = R.drawable.petprofilelogo,
+                                    resId = R.drawable.new_petprofile_logo,
                                     label = "Profile",
-                                    iconSize = 200.dp,
+                                    iconSize = 220.dp, // Slightly larger
                                     onClick = { navController.navigate("pet_profile") }
                                 )
                             }
                             Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                                 HomeDashboardIcon(
-                                    resId = R.drawable.addpetlogo,
+                                    resId = R.drawable.new_addpet_logo,
                                     label = "Add Pet",
-                                    iconSize = 185.dp,
+                                    iconSize = 220.dp, // Slightly larger
                                     onClick = { navController.navigate("add_pet") }
                                 )
                             }
@@ -141,25 +141,25 @@ fun HomeScreen(navController: NavController, isDarkMode: Boolean = false) {
                         ) {
                             Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                                 HomeDashboardIcon(
-                                    resId = R.drawable.reminderslogo,
+                                    resId = R.drawable.new_reminders_logo,
                                     label = "Reminders",
-                                    iconSize = 120.dp,
+                                    iconSize = 150.dp, // Larger
                                     onClick = { navController.navigate("reminders") }
                                 )
                             }
                             Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                                 HomeDashboardIcon(
-                                    resId = R.drawable.findvetlogotp,
+                                    resId = R.drawable.new_findvet_logo,
                                     label = "Find Vet",
-                                    iconSize = 120.dp,
+                                    iconSize = 150.dp, // Larger
                                     onClick = { navController.navigate("find_vet") }
                                 )
                             }
                             Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                                 HomeDashboardIcon(
-                                    resId = R.drawable.settingslogotp,
+                                    resId = R.drawable.new_settings_logo,
                                     label = "Settings",
-                                    iconSize = 120.dp,
+                                    iconSize = 150.dp, // Larger
                                     onClick = { navController.navigate("settings") }
                                 )
                             }
@@ -167,13 +167,13 @@ fun HomeScreen(navController: NavController, isDarkMode: Boolean = false) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(28.dp))
+                Spacer(modifier = Modifier.height(40.dp)) // Increased spacer to push Wellness Tips down further
 
                 // --- Wellness Tips Section ---
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 24.dp)
+                        .padding(bottom = 32.dp) // Added more bottom padding
                         .clickable { navController.navigate("wellness_tips") },
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(
@@ -183,7 +183,7 @@ fun HomeScreen(navController: NavController, isDarkMode: Boolean = false) {
                     elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                 ) {
                     Column(
-                        modifier = Modifier.padding(20.dp)
+                        modifier = Modifier.padding(24.dp) // Slightly more internal padding
                     ) {
                         Text(
                             text = "Wellness Tips",
@@ -237,7 +237,7 @@ private fun HomeDashboardIcon(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, device = "spec:width=411dp,height=891dp,dpi=420", showSystemUi = true)
 @Composable
 fun PreviewHomeScreen() {
     com.example.petsync1.ui.theme.PetSync1Theme {
@@ -245,7 +245,7 @@ fun PreviewHomeScreen() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, device = "spec:width=411dp,height=891dp,dpi=420", showSystemUi = true)
 @Composable
 fun PreviewHomeScreenDark() {
     com.example.petsync1.ui.theme.PetSync1Theme(darkTheme = true) {

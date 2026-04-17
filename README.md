@@ -42,16 +42,26 @@
 
 ## 📸 Screenshots & Demo
 
+<div style="text-align: center;">
+  <img src="screenshots/demo.gif" width="300px" alt="App Demo Video" />
+</div>
+
+<br/>
+
 <details>
 <summary><b>Click to expand app screenshots</b></summary>
 
 <div style="text-align: center;">
+  <img src="screenshots/homescreen.png" width="45%" alt="Home Screen" />
   <img src="screenshots/profile.png" width="45%" alt="Pet Profile Screen" />
-  <img src="screenshots/healthrecords.png" width="45%" alt="Health Records Screen" />
 </div>
 
 <div style="text-align: center;">
+  <img src="screenshots/healthrecords.png" width="45%" alt="Health Records Screen" />
   <img src="screenshots/reminders.png" width="45%" alt="Reminders Screen" />
+</div>
+
+<div style="text-align: center;">
   <img src="screenshots/settings.png" width="45%" alt="Settings Screen" />
 </div>
 
