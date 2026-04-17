@@ -16,6 +16,16 @@
 
 ---
 
+## 🔥 Key Highlights
+
+- Built as a final year diploma project and continuously improved post-completion
+- Supports multi-user and multi-pet data management
+- Real-time synchronization using Firebase Firestore
+- Clean MVVM architecture with reactive StateFlow
+- Designed as a scalable, real-world mobile application
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Language:** [Kotlin](https://kotlinlang.org/)
